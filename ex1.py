@@ -1,2 +1,2 @@
 import streamlit as st
-st.title('ㅎㅣㅅㅓ')
+st.title('ㅎㅣㅅㅓㄷㅏ')
