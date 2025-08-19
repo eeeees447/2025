@@ -13,20 +13,22 @@ color = st.selectbox(
     ["화이트", "아이보리", "베이지", "라이트 그레이", "차콜", "블랙", "네이비", "스카이블루", "카키", "올리브", "머스타드 옐로우", "버건디 레드", "라이트 핑크", "민트", "라벤더"]
 )
 
-# 상의 형태 선택
+# 상의 형태 선택 (폴로셔츠 제거, 다른 형태 추가)
 shape = st.radio(
     "상의 형태를 선택하세요",
-    ["티셔츠", "셔츠", "후드", "니트", "자켓", "블레이저", "폴로 셔츠"],
+    ["티셔츠", "셔츠", "후드", "니트", "자켓", "블레이저", "맨투맨", "가디건"],
     horizontal=True
 )
 
 # 추천 로직
 def recommend_pants(color, shape):
     if color in ["화이트", "아이보리", "베이지"]:
-        if shape in ["셔츠", "블레이저"]:
+        if shape in ["셔츠", "블레이저", "가디건"]:
             return "슬림핏 네이비 슬랙스"
         elif shape == "티셔츠":
             return "라이트 블루 청바지"
+        elif shape == "맨투맨":
+            return "스트레이트핏 데님 팬츠"
         else:
             return "베이지 와이드 팬츠"
     elif color in ["블랙", "차콜", "네이비"]:
@@ -34,16 +36,22 @@ def recommend_pants(color, shape):
             return "그레이 조거 팬츠"
         elif shape == "니트":
             return "체크 패턴 슬랙스"
+        elif shape == "맨투맨":
+            return "블랙 카고 팬츠"
         else:
             return "다크 블루 데님 팬츠"
     elif color in ["버건디 레드", "머스타드 옐로우", "라이트 핑크", "라벤더", "민트"]:
         if shape == "티셔츠":
             return "블랙 스키니 진"
+        elif shape == "맨투맨":
+            return "화이트 와이드 팬츠"
         else:
             return "화이트 크롭 팬츠"
     elif color in ["카키", "올리브"]:
         if shape == "자켓":
             return "브라운 치노 팬츠"
+        elif shape == "가디건":
+            return "아이보리 슬랙스"
         else:
             return "아이보리 와이드 팬츠"
     else:
@@ -58,4 +66,3 @@ if st.button("✨ 스타일 추천 받기 ✨"):
             <p style='font-size:18px;'> <b>{color}</b> <b>{shape}</b> 에는 👉 <b style='color:#27AE60;'>{pants}</b> 가 잘 어울립니다!</p>
         </div>
     """, unsafe_allow_html=True)
-
